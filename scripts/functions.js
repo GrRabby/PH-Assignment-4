@@ -102,20 +102,18 @@ function update_job_status(id,type='NOT APPLIED'){
 }
 function openDeleteModal(id) {
   selectedJobId = id;
-  document.getElementById("my_modal_1").showModal();
+  document.getElementById("my_modal").showModal();
 }
 function confirmDelete(result) {
-    document.getElementById("my_modal_1").close();
+    document.getElementById("my_modal").close();
     if(!result){
         return
     }  
     remove_job(selectedJobId);
 }
 function update_dashboard(){
-    const interview = jobs_data.filter(job => job.status === 'INTERVIEW').length
-    const rejected = jobs_data.filter(job => job.status === 'REJECTED').length
     document.getElementById('total-jobs').innerText =  jobs_data.length;
-    document.getElementById('interview').innerText = interview
-    document.getElementById('rejected').innerText = rejected
+    document.getElementById('interview').innerText = jobs_data.filter(job => job.status === 'INTERVIEW').length
+    document.getElementById('rejected').innerText = jobs_data.filter(job => job.status === 'REJECTED').length
 }
 
