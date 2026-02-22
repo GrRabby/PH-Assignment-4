@@ -1,4 +1,4 @@
-function add_job_cards(jobs_list){
+function add_job_cards(jobs_list,animation=false){
     document.getElementById('no-jobs-card').hidden = false
     const job_section = document.getElementById('job-cards');
     update_dashboard()
@@ -13,15 +13,15 @@ function add_job_cards(jobs_list){
     document.getElementById('availabe-jobs').innerText =  `${filtered_jobs.length} of ${jobs_list.length} Jobs`;
     job_section.innerHTML = ''
     // iterate all jobs and create the cards for each job and append
-    let index = 0
     for(jobs of filtered_jobs){
         // hide the default no jobs card
         document.getElementById('no-jobs-card').hidden = true
         const div = document.createElement('div');
         div.setAttribute('id', 'cards');
-        div.setAttribute('class', 'bg-base-100 p-6 rounded-lg border border-base-300 shadow-md border-l-4 hover:-translate-y-0.5 transition duration-400 ease-in-out opacity-0 -translate-x-10');
+        div.setAttribute('class', 'bg-base-100 p-6 rounded-lg border border-base-300 shadow-md border-l-4 hover:-translate-y-0.5 transition duration-500 ease-in-out');
         if(jobs.status === 'INTERVIEW') div.classList.add('border-l-green-600/50')
         if(jobs.status === 'REJECTED') div.classList.add('border-l-red-600/50')
+        if(animation) div.classList.add('opacity-0','-translate-x-10')
         div.innerHTML = `
             <div class="w-full space-y-1 flex justify-between items-center">
                 <div>
@@ -62,7 +62,6 @@ function add_job_cards(jobs_list){
             div.classList.remove('opacity-0', '-translate-x-10');
             div.classList.add('opacity-100',);
         }, 10);
-        index++
     }
 }
 function tabs_switched(element,type){
@@ -75,15 +74,15 @@ function tabs_switched(element,type){
     if (type === 'all'){
         element.classList.add('btn-primary')
         element.children[0].classList.add('text-white')
-        add_job_cards(jobs_data)
+        add_job_cards(jobs_data,animation=true)
     }else if(type === 'interview'){
         element.classList.add('btn-primary')
         element.children[0].classList.add('text-white')
-        add_job_cards(jobs_data)
+        add_job_cards(jobs_data,animation=true)
     }else if(type === 'rejected'){
         element.classList.add('btn-primary')
         element.children[0].classList.add('text-white')
-        add_job_cards(jobs_data)
+        add_job_cards(jobs_data,animation=true)
     }
 }
 function remove_job(id){
