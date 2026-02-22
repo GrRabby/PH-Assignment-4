@@ -17,7 +17,7 @@
         }
     </style>
 </head>
-<body class="max-w-[1600px] bg-[#F8FAFC] mx-auto p-7 sm:p-15 box-border">
+<body class=" bg-[#F8FAFC] mx-auto p-7 sm:p-15 box-border">
     <header class="dashboard max-w-[1110px] mx-auto space-y-5">
         <h1 class="text-2xl font-bold">Job Application Tracker</h1>
         <div class="flex flex-col gap-4 sm:flex-row">
@@ -42,28 +42,96 @@
             <h2 class="font-bold text-[#002C5C]">Available Jobs</h2>
             <p id="availabe-jobs" class="text-[#64748]"></p>
         </div>
-        <div class="flex justify-start gap-2">
-            <div class="btn bg-blue-500 rounded-sm px-8 h-8 flex items-center justify-center max-w-20">
-                <p class="text-white text-[12px]">All</p>
+        <div id="tab-items" class="flex justify-start gap-2">
+            <div class="btn btn-primary rounded-sm px-8 h-8 flex items-center justify-center max-w-20" onclick="tabs_switched(this,'all')">
+                <p class=" text-white text-[12px]">All</p>
             </div>
-            <div class="btn  bg-white rounded-sm px-8 h-8 flex items-center justify-center border border-gray-200 max-w-20">
-                <p class="text-gray-400 text-[12px]">Interview</p>
+            <div class="btn  rounded-sm px-8 h-8 flex items-center justify-center max-w-20" onclick="tabs_switched(this,'interview')">
+                <p class=" text-[12px]">Interview</p>
             </div>
-            <div class="btn bg-white rounded-sm px-8 h-8 flex items-center justify-center border border-gray-200 max-w-20">
-                <p class="text-gray-400 text-[12px]">Rejected</p>
+            <div class="btn rounded-sm px-8 h-8 flex items-center justify-center max-w-20" onclick="tabs_switched(this,'rejected')">
+                <p class=" text-[12px]">Rejected</p>
             </div>
         </div>
+        <div id="no-jobs-card" class="bg-white p-6 rounded-lg border border-[#F1F2F4] w-full h-[400px] flex justify-center items-center flex-col gap-1">
+            <img src="document.png" alt="">
+            <h1 class="text-[24px] font-semibold">No jobs available</h1>
+            <h2 class="text-4 text-[#64748B]">Check back soon for new job opportunities</h2>
+        </div>
         <section id="job-cards" class="max-w-[1110px] job-cards flex flex-col mx-auto gap-4">
-            <div id="no-jobs-card" class="bg-white p-6 rounded-lg border border-[#F1F2F4] w-full h-[400px] flex justify-center items-center flex-col gap-1">
-                <img src="document.png" alt="">
-                <h1 class="text-[24px] font-semibold">No jobs available</h1>
-                <h2 class="text-4 text-[#64748B]">Check back soon for new job opportunities</h2>
-
-            </div>
         </section>
     </section>
-    <script src="scripts/load-jobs.js">
-
+    <script src="scripts/functions.js"></script>
+    <script>
+        let current_tab = 'all'
+        let jobs_data = [
+            {
+                company : 'Mobile First Corp',
+                designation : 'React Native Developer',
+                salary : 'Remote • Full-time • $130,000 - $175,000',
+                status : 'NOT APPLIED',
+                details : 'Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.',
+                JobId : 0
+            },
+            {
+                company : 'WebFlow Agency',
+                designation : 'React Native Developer',
+                salary : 'Los Angeles, CA • Part-time • $80,000 - $120,000',
+                status : 'NOT APPLIED',
+                details : 'Create stunning web experiences for high-profile clients. Must have portfolio and experience with modern web design trends.',
+                JobId : 1
+            },
+            {
+                company : 'DataViz Solutions',
+                designation : 'Data Visualization Specialist',
+                salary : 'Boston, MA • Full-time • $125,000 - $165,000',
+                status : 'NOT APPLIED',
+                details : 'Transform complex data into compelling visualizations. Required skills: D3.js, React, and strong analytical thinking.',
+                JobId : 2
+            },
+            {
+                company : 'CloudFirst Inc',
+                designation : 'Backend Developer',
+                salary : 'Seattle, WA • Full-time • $140,000 - $190,000',
+                status : 'NOT APPLIED',
+                details : 'Design and maintain scalable backend systems using Python and AWS. Work with modern DevOps practices and cloud infrastructure.',
+                JobId : 3
+            },
+            {
+                company : 'Innovation Labs',
+                designation : 'UI/UX Engineer',
+                salary : 'Austin, TX • Full-time • $110,000 - $150,000',
+                status : 'NOT APPLIED',
+                details : 'Create beautiful and functional user interfaces for our suite of products. Strong design skills and frontend development expertise required.',
+                JobId : 4
+            },
+            {
+                company : 'MegaCorp Solutions',
+                designation : 'JavaScript Developer',
+                salary : 'New York, NY • Full-time • $130,000 - $170,00',
+                status : 'NOT APPLIED',
+                details : 'Build enterprise applications with JavaScript and modern frameworks. We offer competitive compensation, health insurance, and professional development opportunities.',
+                JobId : 5
+            },
+            {
+                company : 'StartupXYZ',
+                designation : 'Full Stack Engineer',
+                salary : 'Remote • Full-time • $120,000 - $160,000',
+                status : 'NOT APPLIED',
+                details : 'Join our fast-growing startup and work on our core platform. Experience with Node.js and React required. Great benefits and equity package included.',
+                JobId : 6
+            },
+                {
+                company : 'TechCorp Industries',
+                designation : 'Senior Frontend Developer',
+                salary : 'San Francisco, CA • Full-time • $130,000 - $175,000',
+                status : 'NOT APPLIED',
+                details : 'We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript. You will work with a talented team on cutting-edge projects.',
+                JobId : 7
+            },
+        ]
+        document.getElementById('total-jobs').innerText =  jobs_data.length;
+        add_job_cards(jobs_data)
     </script>
 </body>
 </html>
