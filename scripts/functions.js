@@ -107,6 +107,7 @@ function update_job_status(id,type='NOT APPLIED'){
 function update_dashboard(){
     const interview = jobs_data.filter(job => job.status === 'INTERVIEW').length
     const rejected = jobs_data.filter(job => job.status === 'REJECTED').length
+    document.getElementById('total-jobs').innerText =  jobs_data.length;
     document.getElementById('interview').innerText = interview
     document.getElementById('rejected').innerText = rejected
 }
