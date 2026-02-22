@@ -31,15 +31,15 @@ function add_job_cards(jobs_list,animation=false){
                 <button class="btn btn-soft btn-primary h-8 w-8 rounded-[1000px] flex border" onclick="openDeleteModal(${jobs.JobId})"><i class="fa-regular fa-trash-can"></i></button>
             </div>
             <p class="text-[14px] text-gray-600 my-5">${jobs.salary}</p>
-            <div id="badge" class="bg-gray-200 w-[113px] h-9 flex justify-center items-center py-2 px-3 mb-2 rounded-sm">
-                <p class="text-gray-800 text-[14px] font-medium">${jobs.status}</p>
+            <div id="badge" class="bg-gray-200 w-[100px] h-9 flex justify-center items-center py-2 px-3 mb-2 rounded-sm text-center">
+                <p class="text-gray-800 text-[12px] font-medium">${jobs.status}</p>
             </div>
             <p class="text-base-900 text-[14px]">${jobs.details}</p>
             <div id="buttons" class="mt-5 space-x-2">
-                <button class="btn btn-soft border border-[#10B981] bg-base-100 max-h-9" onclick="update_job_status(${jobs.JobId},'INTERVIEW',this)">
+                <button class="btn btn-soft border w-[100px] border-[#10B981] bg-base-100 max-h-9" onclick="update_job_status(${jobs.JobId},'INTERVIEW',this)">
                     <p class="text-[#10B981] font-bold">Interview</p>
                 </button>
-                <button class="btn btn-soft border border-[#EF4444] bg-base-100 max-h-9" onclick="update_job_status(${jobs.JobId},'REJECTED',this)">
+                <button class="btn btn-soft border w-[100px] border-[#EF4444] bg-base-100 max-h-9" onclick="update_job_status(${jobs.JobId},'REJECTED',this)">
                     <p class="text-[#EF4444] font-bold">Rejected</p>
                 </button>
             </div>
