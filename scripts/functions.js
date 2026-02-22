@@ -1,5 +1,3 @@
-
-
 function add_job_cards(jobs_list){
     document.getElementById('no-jobs-card').hidden = false
     const job_section = document.getElementById('job-cards');
@@ -27,7 +25,7 @@ function add_job_cards(jobs_list){
                     <h1 class="text-[18px] font-semibold">${jobs.company}</h1>
                     <h2 class="text-4 text-[#64748B]">${jobs.designation}</h2>
                 </div>
-                <button class="btn btn-soft h-8 w-8 rounded-[1000px] bg-transparent flex" onclick="remove_job(${jobs.JobId})"><i class="fa-regular fa-trash-can"></i></button>
+                <button class="btn btn-soft h-8 w-8 rounded-[1000px] bg-transparent flex" onclick="openDeleteModal(${jobs.JobId})"><i class="fa-regular fa-trash-can"></i></button>
             </div>
             <p class="text-[14px] text-[#64748B] my-5">${jobs.salary}</p>
             <div id="badge" class="bg-[#EEF4FF] w-[113px] h-9 flex justify-center items-center py-2 px-3 mb-2 rounded-sm">
@@ -65,7 +63,7 @@ function tabs_switched(element,type){
         ele.classList.remove('btn-primary');
         ele.children[0].classList.remove('text-white');
     });
-    current_tab = type
+    current_tab = type // flag the selected tab to update job list depending on selected tab
     if (type === 'all'){
         element.classList.add('btn-primary')
         element.children[0].classList.add('text-white')
@@ -88,7 +86,6 @@ function remove_job(id){
     }else{
         update_job_status(id) // reset the status to default
     }
-    
 }
 function update_job_status(id,type='NOT APPLIED'){
     for(jobs of jobs_data){
@@ -103,6 +100,20 @@ function update_job_status(id,type='NOT APPLIED'){
         }
     }
     add_job_cards(jobs_data)
+}
+function openDeleteModal(id) {
+  selectedJobId = id;
+  document.getElementById("my_modal_1").showModal();
+}
+function confirmDelete(result) {
+    document.getElementById("my_modal_1").close();
+    if(!result){
+        return
+    }  
+    if (selectedJobId !== null) {
+        remove_job(selectedJobId);
+    }
+    selectedJobId = null;
 }
 function update_dashboard(){
     const interview = jobs_data.filter(job => job.status === 'INTERVIEW').length
