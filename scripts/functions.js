@@ -82,7 +82,6 @@ function remove_job(id){
     if(current_tab === 'all'){
         jobs_data = jobs_data.filter(job => job.JobId !== id);
         add_job_cards(jobs_data)
-        document.getElementById('total-jobs').innerText =  jobs_data.length;
     }else{
         update_job_status(id) // reset the status to default
     }
@@ -110,10 +109,7 @@ function confirmDelete(result) {
     if(!result){
         return
     }  
-    if (selectedJobId !== null) {
-        remove_job(selectedJobId);
-    }
-    selectedJobId = null;
+    remove_job(selectedJobId);
 }
 function update_dashboard(){
     const interview = jobs_data.filter(job => job.status === 'INTERVIEW').length
