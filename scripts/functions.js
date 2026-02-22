@@ -18,7 +18,7 @@ function add_job_cards(jobs_list){
         document.getElementById('no-jobs-card').hidden = true
         const div = document.createElement('div');
         div.setAttribute('id', 'cards');
-        div.setAttribute('class', 'bg-white p-6 rounded-lg border border-[#F1F2F4]');
+        div.setAttribute('class', 'bg-base-100 p-6 rounded-lg border border-base-300 shadow-md');
         div.innerHTML = `
             <div class="w-full space-y-1 flex justify-between items-center">
                 <div>
@@ -27,11 +27,11 @@ function add_job_cards(jobs_list){
                 </div>
                 <button class="btn btn-soft h-8 w-8 rounded-[1000px] bg-transparent flex" onclick="openDeleteModal(${jobs.JobId})"><i class="fa-regular fa-trash-can"></i></button>
             </div>
-            <p class="text-[14px] text-[#64748B] my-5">${jobs.salary}</p>
-            <div id="badge" class="bg-[#EEF4FF] w-[113px] h-9 flex justify-center items-center py-2 px-3 mb-2 rounded-sm">
-                <p class="text-[#002C5C] text-[14px] font-medium">${jobs.status}</p>
+            <p class="text-[14px] text-gray-600 my-5">${jobs.salary}</p>
+            <div id="badge" class="bg-gray-200 w-[113px] h-9 flex justify-center items-center py-2 px-3 mb-2 rounded-sm">
+                <p class="text-gray-800 text-[14px] font-medium">${jobs.status}</p>
             </div>
-            <p class="text-[#323B49] text-[14px]">${jobs.details}</p>
+            <p class="text-base-900 text-[14px]">${jobs.details}</p>
             <div id="buttons" class="mt-5 space-x-2">
                 <button class="btn btn-soft border border-[#10B981] bg-base-100 max-h-9" onclick="update_job_status(${jobs.JobId},'INTERVIEW')">
                     <p class="text-[#10B981] font-bold">Interview</p>
@@ -44,12 +44,12 @@ function add_job_cards(jobs_list){
         if (jobs.status === 'INTERVIEW') {
             const badge = div.querySelector('#badge');
             const badge_text = badge.querySelector('p');
-            badge.classList.add('bg-green-100', 'border', 'border-[#10B981]');
+            badge.classList.add('bg-green-200', 'border', 'border-[#10B981]');
             badge_text.classList.add('text-[#10B981]');
         }else if(jobs.status === 'REJECTED'){
             const badge = div.querySelector('#badge');
             const badge_text = badge.querySelector('p');
-            badge.classList.add('bg-red-100', 'border', 'border-[#EF4444]');
+            badge.classList.add('bg-red-200', 'border', 'border-[#EF4444]');
             badge_text.classList.add('text-[#EF4444]');
         }
         
